@@ -11,15 +11,22 @@ class SetForLife {
             .slice(0, howMany);
     }
 
-    pickLine(amount = 1) {
-        if (amount > 1) {
-            this.pickMultiLines(amount);
-        } else {
+    pickLine(maxLines = 1) {
+        var currentLine = 0;
+        var interval = 1250;
+
+        var intervalID = setInterval(() => {
             this.fillLine(
                 this.pickRandomNumbers(5, 47),
                 this.pickRandomNumbers(1, 10)[0],
             );
-        }
+
+            currentLine++;
+
+            if (currentLine >= maxLines) {
+                window.clearInterval(intervalID);
+            }
+        }, interval);
     }
 
     fillLine(baseNumbers, lifeBall) {
@@ -35,22 +42,6 @@ class SetForLife {
         document.querySelector("#number_selection_confirm_button").click();
 
         this.currentLine++;
-    }
-
-
-    pickMultiLines(maxInterations) {
-        var currentIteration = 0;
-        var pause = 1250;
-
-        var intervalID = setInterval(() => {
-            this.pickLine();
-
-            currentIteration++;
-
-            if (currentIteration >= maxInterations) {
-                window.clearInterval(intervalID);
-            }
-        }, pause);
     }
 }
 
