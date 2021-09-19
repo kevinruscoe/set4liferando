@@ -42,7 +42,7 @@ class SetForLife {
         var currentIteration = 0;
         var pause = 1250;
 
-        var intervalID = setInterval(function () {
+        var intervalID = setInterval(() => {
             this.pickLine();
 
             currentIteration++;
@@ -50,9 +50,9 @@ class SetForLife {
             if (currentIteration >= maxInterations) {
                 window.clearInterval(intervalID);
             }
-        }.bind(this), pause);
+        }, pause);
     }
 }
 
 var set4life = new SetForLife();
-// set4life.pickLine();
+set4life.pickLine();
