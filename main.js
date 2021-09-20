@@ -46,4 +46,27 @@ class SetForLife {
 }
 
 var set4life = new SetForLife();
+
+// pick 1 line
 set4life.pickLine();
+
+// pick multi line
+set4life.pickLine(5);
+
+// wanna pick from random.org?
+let lines = `
+04-10-18-34-41 / 08
+04-10-18-34-41 / 08
+04-10-18-34-41 / 08
+04-10-18-34-41 / 08
+04-10-18-34-41 / 08
+04-10-18-34-41 / 08
+04-10-18-34-41 / 08
+`.split("\n").filter(n => n).map(l => {
+    let _line = l.split(" / ")
+    return [_line[0].split("-").map(n => parseInt(n)), parseInt(_line[1])];
+}).forEach(l => {
+    setTimeout(() => {
+        set4life.fillLine(l[0], l[1]);
+    }, 1000);
+});
